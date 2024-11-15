@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { generateClient } from 'aws-amplify/data';
 import type { Schema } from '../../../amplify/data/resource';
+import { events } from 'aws-amplify/data';
+import { AnimationStyleMetadata } from '@angular/animations';
+
 
 const client = generateClient<Schema>();
 
@@ -17,6 +20,23 @@ export class TodosComponent implements OnInit {
 
   ngOnInit(): void {
     this.listTodos();
+    this.openChannel();
+    this.sendEvent();
+  }
+
+  async sendEvent() {
+    await events.post('/default/test', {some: 'data'});
+
+  }
+
+  async openChannel() {
+    const channel = await events.connect('/default/test');
+    channel.subscribe({
+  next: (data: AnimationStyleMetadata) => {
+    console.log('received', data);
+  },
+  error: (err: any) => console.error('error', err),
+});
   }
 
   listTodos() {

@@ -5,6 +5,20 @@ import type { Schema } from '../../../amplify/data/resource';
 import { events } from 'aws-amplify/data';
 import { AnimationStyleMetadata } from '@angular/animations';
 
+// import { Amplify } from 'aws-amplify';
+
+// Amplify.configure({
+//   "API": {
+//     "Events": {
+//       "endpoint": "https://hjzp2ynwl5ehvjn4lihvnesplm.appsync-api.us-east-1.amazonaws.com/event",
+//       "region": "us-east-1",
+//       "defaultAuthMode": "apiKey",
+//       "apiKey": "da2-bmfwwzhplnb4bg3vdkik62u3ba"
+//     }
+//   }
+// });
+
+
 
 const client = generateClient<Schema>();
 
